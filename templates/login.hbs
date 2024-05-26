@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+
+ <style>
+    body{
+
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        background-color:whitesmoke;
+        padding: 0%;
+       
+    }
+    .maincontainer
+    {
+        display: flex;
+        justify-content: center;
+        justify-content:space-evenly;
+        
+    }
+
+    h1{
+        margin-left: 40px;
+        text-align: left;
+        font-size: 50px;
+    }
+    h2{
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+    }
+    .logincontainer{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         flex:1;
+    }
+    input{
+        font-size:15px;
+        text-align: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        width: 300px;
+        height: 50px;
+        border-radius: 15px;
+    }
+    #submitid{
+        background-color: black;
+        color: white;
+        margin-left: 75px;
+          width:150px;
+    }
+    img{
+        margin-left: 25px;
+        border-radius: 50px;
+        height: 400px;
+        flex:1;
+        
+    }
+  
+ </style>
+</head>
+<body>
+    <h1>Communiti</h1>
+  <div class="maincontainer">
+  <img src="https://images.unsplash.com/photo-1624204386084-dd8c05e32226?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YXBhcnRtZW50JTIwYnVpbGRpbmd8ZW58MHx8MHx8fDA%3D">
+    
+    
+    
+     <div class="logincontainer">
+        <h2>Login</h2>
+    <form action="/login"  method="post">
+    <input type="text" name="name" id="namein" placeholder="your name"><br>
+    <input type="password" name="password" id="pswdin" placeholder="password"><br>
+    <input type="submit" id="submitid" value="login"><br>
+    </form><br>
+    <a href="/signup">Don't have an account? Sign up now</a>
+    </div>
+</div>
+</body>
+</html>

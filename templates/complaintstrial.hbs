@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communiti-Complaint Dashboard</title>
+    <style>
+        body{
+            background-color: whitesmoke;
+        }
+        .title {
+            font-weight: bold;
+            font-size: xx-large;
+            margin-top: 20px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-left: 50px;
+        }
+
+        div {
+            margin-top: 20px;
+            margin-left: 90px;
+            margin-right: 90px;
+            font-size: small;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 20px;
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+
+        .headContainer {
+            color: aqua;
+            background-color: black;
+            text-align: center;
+        }
+
+        input[type=text], input[type=date], input[type=time], input[type=tel], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            font-size: 20px;
+            background-color: grey;
+            color: black;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+
+        .btn-orange {
+            background-color: orange;
+        }
+
+        .ctable {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        table {
+            background-color: grey;
+            color: white;
+            margin: 15px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        #addButton td input {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="title">Communiti/ <small>Complaint Log</small></h1>
+</header>
+
+<div class="container">
+    <form id="complaintForm">
+        <label for="doorNumber">Door Number:</label><br>
+        <input type="text" id="doorNumber" name="doorNumber" required><br><br>
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<h2 class="ctable">Complaints</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Door Number</th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="complaintsTableBody">
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('complaintForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const doorNumber = document.getElementById('doorNumber').value;
+        const subject = document.getElementById('subject').value;
+        const description = document.getElementById('description').value;
+
+        const newRow = document.createElement('tr');
+
+        const doorNumberCell = document.createElement('td');
+        doorNumberCell.textContent = doorNumber;
+        newRow.appendChild(doorNumberCell);
+
+        const subjectCell = document.createElement('td');
+        subjectCell.textContent = subject;
+        newRow.appendChild(subjectCell);
+
+        const descriptionCell = document.createElement('td');
+        descriptionCell.textContent = description;
+        newRow.appendChild(descriptionCell);
+
+        const statusCell = document.createElement('td');
+        statusCell.classList.add('status-buttons');
+
+        const pendingButton = document.createElement('button');
+        pendingButton.textContent = 'Pending';
+        pendingButton.classList.add('btn-default');
+        pendingButton.onclick = function() {
+            toggleButton(pendingButton, finishedButton);
+        };
+        
+        const finishedButton = document.createElement('button');
+        finishedButton.textContent = 'Finished';
+        finishedButton.classList.add('btn-default');
+        finishedButton.onclick = function() {
+            toggleButton(finishedButton, pendingButton);
+        };
+
+        statusCell.appendChild(pendingButton);
+        statusCell.appendChild(finishedButton);
+        newRow.appendChild(statusCell);
+
+        document.getElementById('complaintsTableBody').appendChild(newRow);
+
+        document.getElementById('complaintForm').reset();
+    });
+
+    function toggleButton(activeButton, inactiveButton) {
+        activeButton.classList.add('btn-orange');
+        activeButton.classList.remove('btn-default');
+        inactiveButton.classList.add('btn-default');
+        inactiveButton.classList.remove('btn-orange');
+    }
+</script>
+</body>
+</html>

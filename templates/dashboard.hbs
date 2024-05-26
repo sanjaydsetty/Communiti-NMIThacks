@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communiti dashboard</title>
+    <style>
+        .title{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: 50px;
+}
+body{
+    background-color: whitesmoke;
+}
+.welcome{
+    text-align: center;
+    align-items: center;
+    margin-top: 12%;
+    text-align: center;
+    font-size: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+}
+button.profile{
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    padding: 25px 60px;
+    border-radius: 20px;
+}
+button.profile:hover{
+    transition: .2s;
+    transform: scale(1.15);
+}
+.flex-container {
+    margin-top: 5%;
+    display: flex;
+    
+    justify-content: center;
+  }
+  
+  .flex-container > div {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    flex: 1;
+    border-radius: 20px;
+    background-color: grey;
+    color: black;
+    margin: 10px;
+    padding: 40px;
+    font-size: 30px;
+  }
+  .flex-container > div:hover{
+    transition: .2s;
+    transform: scale(1);
+    background-color: black;
+    color: white;
+  }
+  button.buttons {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 15px;
+    border-radius: 20px;
+  }
+  
+  a:link, a:visited{
+    background-color: black;
+    color: white;
+    padding: 15px;
+    margin-top:5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    font-size:20px;
+    }
+ a:hover{
+    transition: .2s;
+    transform: scale(1.15);
+}
+  
+  button.buttons:hover {
+    transition: .2s;
+    transform: scale(1.15);
+}
+    </style>
+</head>
+<body>
+    <head >
+        <h1 class="title">Communiti</h1>
+    </head>
+
+    <div class="welcome">
+        <h1>Welcome</h1>
+    </div>
+
+    <div class="flex-container">
+        <div>Community Polls<br><a href="./poll.hbs" class="guestclass">View</a></div>
+        <div>Guests Log<br><a href="./guestsloginput.hbs" class="guestclass">view</a></div>
+        <div>Complaints<br><a href="./complaintstrial.hbs" class="guestclass">view</a></div> 
+      </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Poll</title>
+  <style>
+    body{
+        background-color:whitesmoke;
+    }
+    .title{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-left: 50px;
+}
+.container {
+  background-color: black;
+  color: gray;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 20px;
+}
+input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+  }
+  button{
+    margin-top: 10px;
+	font-size: 20px;
+    background-color: grey;
+    color: black;
+    padding: 10px 10px;
+    border-radius: 20px;
+}
+button:hover{
+    transition: .2s;
+    transform: scale(1.15);
+}
+  </style>
+</head>
+
+<body>
+    <h1 class="title">Communiti/<small> Polls</small></h1>
+  <div class="container">
+   
+    
+    <div id="pollForm">
+      <h2>Create a Poll</h2>
+      <input type="text" id="pollTitle" placeholder="Poll Title">
+      <div id="options">
+        <input type="text" class="option" placeholder="Option 1">
+        <input type="text" class="option" placeholder="Option 2">
+      </div>
+      <button onclick="addOption()">Add Option</button>
+      <button onclick="createPoll()">Create Poll</button>
+    </div>
+    <div id="pollContainer"></div>
+  </div>
+<script>
+    let pollData = [];
+
+function addOption() {
+  const optionsDiv = document.getElementById('options');
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'option';
+  input.placeholder = 'Option ' + (optionsDiv.childElementCount + 1);
+  optionsDiv.appendChild(input);
+}
+
+function createPoll() {
+  const pollTitle = document.getElementById('pollTitle').value;
+  const options = document.querySelectorAll('.option');
+  const optionsArray = Array.from(options).map(option => option.value);
+  if (pollTitle && optionsArray.length > 1) {
+    const poll = {
+      title: pollTitle,
+      options: optionsArray,
+      votes: Array(optionsArray.length).fill(0),
+      voted: false
+    };
+    pollData.push(poll);
+    renderPolls();
+  } else {
+    alert('Please enter a title and at least two options.');
+  }
+}
+
+function renderPolls() {
+  const pollContainer = document.getElementById('pollContainer');
+  pollContainer.innerHTML = '';
+  pollData.forEach((poll, index) => {
+    const pollElement = document.createElement('div');
+    pollElement.classList.add('poll');
+    const optionsList = poll.options.map((option, i) => `
+      <button onclick="vote(${index}, ${i})">${option}</button> - ${poll.votes[i]} votes
+    `).join('');
+    pollElement.innerHTML = `
+      <h2>${poll.title}</h2>
+      ${optionsList}
+    `;
+    pollContainer.appendChild(pollElement);
+  });
+}
+
+function vote(pollIndex, optionIndex) {
+  if (!pollData[pollIndex].voted) {
+    pollData[pollIndex].votes[optionIndex]++;
+    pollData[pollIndex].voted = true;
+    renderPolls();
+  } else {
+    alert('You have already voted on this poll.');
+  }
+}
+</script>
+</body>
+</html>
